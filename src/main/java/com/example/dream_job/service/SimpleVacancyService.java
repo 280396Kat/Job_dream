@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class SimpleVacancyService implements VacancyService { //
+public class SimpleVacancyService implements VacancyService { ///////
 
    private final MemoryVacancy vacancyRepository;
     private final FileService fileService;
