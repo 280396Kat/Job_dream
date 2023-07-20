@@ -1,11 +1,11 @@
-package com.example.dream_job.service;
+package com.example.dream_job.dao;
 
 import com.example.dream_job.model.Candidate;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public interface CandidateService {
+public interface MemoryCandidate {
 
     Candidate save(Candidate candidate);
 
@@ -16,6 +16,4 @@ public interface CandidateService {
     Optional<Candidate> findById(int id);
 
     Collection<Candidate> findAll();
-
-
 }

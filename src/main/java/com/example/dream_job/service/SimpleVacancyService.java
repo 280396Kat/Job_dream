@@ -2,8 +2,7 @@ package com.example.dream_job.service;
 
 import com.example.dream_job.dto.FileDto;
 import com.example.dream_job.model.Vacancy;
-import com.example.dream_job.repository.MemoryVacancyRepository;
-import com.example.dream_job.repository.VacancyRepository;
+import com.example.dream_job.dao.MemoryVacancy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SimpleVacancyService implements VacancyService {
 
-   private final VacancyRepository vacancyRepository;
+   private final MemoryVacancy vacancyRepository;
     private final FileService fileService;
 
     @Override
@@ -25,7 +24,7 @@ public class SimpleVacancyService implements VacancyService {
 
     private void saveNewFile(Vacancy vacancy, FileDto image) {
         var file = fileService.save(image);
-        vacancy.setFileId(file.getId());
+        vacancy.setFile(file);
     }
 
     @Override
@@ -35,9 +34,10 @@ public class SimpleVacancyService implements VacancyService {
             return false;
         }
         var isDeleted = vacancyRepository.deleteById(id);
-        fileService.deleteById(fileOptional.get().getFileId());
+        fileService.deleteById(fileOptional.get().getFile().getId());
         return isDeleted;
     }
+
 
     @Override
     public boolean update(Vacancy vacancy, FileDto image) {
@@ -45,7 +45,7 @@ public class SimpleVacancyService implements VacancyService {
         if (isNewFileEmpty) {
             return vacancyRepository.update(vacancy);
         }
-        var oldFileId = vacancy.getFileId();
+        var oldFileId = vacancy.getFile().getId();
         saveNewFile(vacancy, image);
         var isUpdated = vacancyRepository.update(vacancy);
         fileService.deleteById(oldFileId);

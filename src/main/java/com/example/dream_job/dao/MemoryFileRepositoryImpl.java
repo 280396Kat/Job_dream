@@ -1,4 +1,4 @@
-package com.example.dream_job.repository;
+package com.example.dream_job.dao;
 
 import com.example.dream_job.model.File;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
-public class MemoryFileRepository implements FileRepository {
+public class MemoryFileRepositoryImpl implements MemoryFile {
 
     private final AtomicInteger nextId = new AtomicInteger(0);
 

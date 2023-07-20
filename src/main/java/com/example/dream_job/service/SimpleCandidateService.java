@@ -1,8 +1,7 @@
 package com.example.dream_job.service;
 
 import com.example.dream_job.model.Candidate;
-import com.example.dream_job.repository.CandidateRepository;
-import com.example.dream_job.repository.MemoryCandidateRepository;
+import com.example.dream_job.dao.MemoryCandidate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class SimpleCandidateService implements CandidateService {
-    private final CandidateRepository candidateRepository;
+    private final MemoryCandidate candidateRepository;
 
     @Override
     public Candidate save(Candidate candidate) {

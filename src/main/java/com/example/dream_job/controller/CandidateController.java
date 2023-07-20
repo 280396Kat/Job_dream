@@ -1,24 +1,26 @@
 package com.example.dream_job.controller;
 
 import com.example.dream_job.model.Candidate;
-import com.example.dream_job.model.Vacancy;
-import com.example.dream_job.repository.CandidateRepository;
-import com.example.dream_job.repository.MemoryCandidateRepository;
 import com.example.dream_job.service.CandidateService;
 import com.example.dream_job.service.CityService;
-import com.example.dream_job.service.SimpleCandidateService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/candidates")
-@RequiredArgsConstructor
 public class CandidateController {
 
     private final CandidateService candidateService;
     private final CityService cityService;
+
+    public CandidateController(@Qualifier("candidateServiceImpl") CandidateService candidateService,
+                               @Qualifier("cityServiceImpl") CityService cityService) {
+        this.candidateService = candidateService;
+        this.cityService = cityService;
+    }
 
     @GetMapping
     public String getAll(Model model) {

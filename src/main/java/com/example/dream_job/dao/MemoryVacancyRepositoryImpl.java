@@ -1,28 +1,27 @@
-package com.example.dream_job.repository;
+package com.example.dream_job.dao;
 
 import com.example.dream_job.model.Vacancy;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 @Component
-public class MemoryVacancyRepository implements VacancyRepository {
+public class MemoryVacancyRepositoryImpl implements MemoryVacancy {
 
     private int nextId = 1;
 
     private final Map<Integer, Vacancy> vacancies = new HashMap<>();
 
-    private MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "description1", LocalDateTime.now(), true, 1, 0));
-        save(new Vacancy(0, "Junior Java Developer", "description1", LocalDateTime.now(), true, 1, 0));
-        save(new Vacancy(0, "Junior+ Java Developer", "description2", LocalDateTime.now(), false, 2, 0));
-        save(new Vacancy(0, "Middle Java Developer", "description3", LocalDateTime.now(), true, 3, 0));
-        save(new Vacancy(0, "Middle+ Java Developer", "description4", LocalDateTime.now(), false, 2, 0));
-        save(new Vacancy(0, "Senior Java Developer", "description5", LocalDateTime.now(), true, 3, 0));
+    private MemoryVacancyRepositoryImpl() {
+        save(new Vacancy());
+        save(new Vacancy());
+        save(new Vacancy());
+        save(new Vacancy());
+        save(new Vacancy());
+        save(new Vacancy());
     }
 
     @Override
@@ -41,7 +40,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
     public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy) ->
                 new Vacancy(oldVacancy.getId(), vacancy.getTitle(), vacancy.getDescription(),
-                        vacancy.getCreationDate(), vacancy.isVisible(), vacancy.getCityId(), oldVacancy.getFileId())) != null;
+                        vacancy.getCreationDate(), vacancy.isVisible(), vacancy.getCity(), oldVacancy.getFile())) != null;
     }
 
     @Override

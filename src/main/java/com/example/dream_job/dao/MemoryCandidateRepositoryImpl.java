@@ -1,6 +1,7 @@
-package com.example.dream_job.repository;
+package com.example.dream_job.dao;
 
 import com.example.dream_job.model.Candidate;
+import com.example.dream_job.model.City;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -11,17 +12,17 @@ import java.util.Optional;
 import static java.time.LocalDateTime.now;
 
 @Component
-public class MemoryCandidateRepository implements CandidateRepository {
+public class MemoryCandidateRepositoryImpl implements MemoryCandidate {
 
     private int nextId = 1;
 
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
-    private MemoryCandidateRepository() {
-        save(new Candidate(0, "Semen", "Java junior developer", now(), 1));
-        save(new Candidate(0, "Petr", "Java junior developer", now(), 2));
-        save(new Candidate(0, "Vladimir", "Java middle developer", now(), 3));
-        save(new Candidate(0, "Timur", "Java senior developer", now(), 1));
+    private MemoryCandidateRepositoryImpl() {
+        save(new Candidate(0, "Semen", "Java junior developer", now(), new City()));
+        save(new Candidate(0, "Petr", "Java junior developer", now(), new City()));
+        save(new Candidate(0, "Vladimir", "Java middle developer", now(), new City()));
+        save(new Candidate(0, "Timur", "Java senior developer", now(), new City()));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public boolean update(Candidate candidate) {
         if (candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) ->
                 new Candidate(oldCandidate.getId(), candidate.getName(), candidate.getDescription(),
-                        candidate.getCreationDate(), candidate.getCityId())) != null) return true;
+                        candidate.getCreationDate(), candidate.getCity())) != null) return true;
         else return false;
     }
 

@@ -1,10 +1,14 @@
 package com.example.dream_job.controller;
 
 import com.example.dream_job.dto.FileDto;
+import com.example.dream_job.model.Candidate;
+import com.example.dream_job.model.City;
 import com.example.dream_job.model.Vacancy;
+import com.example.dream_job.service.CandidateService;
 import com.example.dream_job.service.CityService;
 import com.example.dream_job.service.VacancyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +16,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/vacancies") /* Работать с кандидатами будем по URI /vacancies/** */
-@RequiredArgsConstructor
 public class VacancyController {
 
     private final VacancyService vacancyService;
     private final CityService cityService;
+
+    public VacancyController(@Qualifier("vacancyServiceImpl") VacancyService vacancyService,
+                               @Qualifier("cityServiceImpl") CityService cityService) {
+        this.vacancyService = vacancyService;
+        this.cityService = cityService;
+    }
 
     @GetMapping
     public String getAll(Model model) {

@@ -2,7 +2,7 @@ package com.example.dream_job.service;
 
 import com.example.dream_job.dto.FileDto;
 import com.example.dream_job.model.File;
-import com.example.dream_job.repository.FileRepository;
+import com.example.dream_job.dao.MemoryFile;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +15,11 @@ import java.util.UUID;
 @Component
 public class SimpleFileService implements FileService {
 
-    private final FileRepository fileRepository;
+    private final MemoryFile fileRepository;
 
     private final String storageDirectory;
 
-    public SimpleFileService(FileRepository fileRepository,
+    public SimpleFileService(MemoryFile fileRepository,
                              @Value("${file.directory}") String storageDirectory) {
         this.fileRepository = fileRepository;
         this.storageDirectory = storageDirectory;
