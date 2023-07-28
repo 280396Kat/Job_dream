@@ -13,6 +13,7 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Builder
 public class Vacancy {
     @EqualsAndHashCode.Include
     @Id

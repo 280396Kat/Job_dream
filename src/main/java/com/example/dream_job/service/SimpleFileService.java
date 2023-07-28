@@ -3,7 +3,6 @@ package com.example.dream_job.service;
 import com.example.dream_job.dto.FileDto;
 import com.example.dream_job.model.File;
 import com.example.dream_job.dao.MemoryFile;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,16 +14,25 @@ import java.util.UUID;
 @Component
 public class SimpleFileService implements FileService {
 
+
+
     private final MemoryFile fileRepository;
 
     private final String storageDirectory;
 
-    public SimpleFileService(MemoryFile fileRepository,
-                             @Value("${file.directory}") String storageDirectory) {
+    public SimpleFileService(MemoryFile fileRepository, String storageDirectory) {
         this.fileRepository = fileRepository;
         this.storageDirectory = storageDirectory;
         createStorageDirectory(storageDirectory);
     }
+
+
+
+//    public SimpleFileService() {
+//        this.fileRepository = fileRepository;
+//        this.storageDirectory = storageDirectory;
+//        createStorageDirectory(storageDirectory);
+//    }
 
     private void createStorageDirectory(String path) {
         try {
@@ -42,7 +50,7 @@ public class SimpleFileService implements FileService {
     }
 
     private String getNewFilePath(String sourceName) {
-        return storageDirectory + java.io.File.separator + UUID.randomUUID() + sourceName;
+        return storageDirectory + java.io.File.separator + UUID.randomUUID()+ java.io.File.separator + sourceName;
     }
 
     private void writeFileBytes(String path, byte[] content) {

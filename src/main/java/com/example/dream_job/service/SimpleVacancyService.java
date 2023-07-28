@@ -13,8 +13,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SimpleVacancyService implements VacancyService {
 
-   private final MemoryVacancy vacancyRepository;
+
+
+    private final MemoryVacancy vacancyRepository;
     private final FileService fileService;
+
+
+
 
     @Override
     public Vacancy save(Vacancy vacancy, FileDto image) {

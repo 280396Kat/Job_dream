@@ -15,7 +15,7 @@ public class MemoryVacancyRepositoryImpl implements MemoryVacancy {
 
     private final Map<Integer, Vacancy> vacancies = new HashMap<>();
 
-    private MemoryVacancyRepositoryImpl() {
+    public MemoryVacancyRepositoryImpl() {
         save(new Vacancy());
         save(new Vacancy());
         save(new Vacancy());
