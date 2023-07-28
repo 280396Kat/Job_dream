@@ -12,6 +12,7 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Builder
 public class City {
     @Id
     @EqualsAndHashCode.Include

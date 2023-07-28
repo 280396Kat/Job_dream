@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,5 +31,7 @@ public class Candidate {
     @ManyToOne
     @JoinColumn(name = "candidate_id")
     private City city;
+
+
 
 }
