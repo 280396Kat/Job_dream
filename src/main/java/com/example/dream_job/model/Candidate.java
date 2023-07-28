@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Builder
 public class Candidate {
     @Id
     @EqualsAndHashCode.Include
