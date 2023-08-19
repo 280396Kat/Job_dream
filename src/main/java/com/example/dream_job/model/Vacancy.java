@@ -32,7 +32,12 @@ public class Vacancy {
     @Column
     private boolean visible;
 
-    @ManyToMany(mappedBy = "vacancies")
+    @ManyToMany
+    @JoinTable(
+            name = "vacancy_city",
+            joinColumns = {@JoinColumn(name = "vacancy_id")},
+            inverseJoinColumns = {@JoinColumn(name = "city_id")}
+    )
     private List<City> city;
 
     @ManyToOne

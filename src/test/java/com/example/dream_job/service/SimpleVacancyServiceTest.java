@@ -1,8 +1,6 @@
 package com.example.dream_job.service;
 
-import com.example.dream_job.dao.MemoryCandidateRepositoryImpl;
-import com.example.dream_job.dao.MemoryVacancy;
-import com.example.dream_job.dao.MemoryVacancyRepositoryImpl;
+import com.example.dream_job.dao.*;
 import com.example.dream_job.dto.FileDto;
 import com.example.dream_job.model.Candidate;
 import com.example.dream_job.model.Vacancy;
@@ -20,12 +18,15 @@ class SimpleVacancyServiceTest {
 
     private FileService fileService;
 
+    private MemoryFile memoryFile;
+
     @BeforeEach
-    void init() {
-        memoryVacancy = new MemoryVacancyRepositoryImpl();
-        fileService = new SimpleFileService();
-        vacancyService = new SimpleVacancyService(memoryVacancy, fileService);
-    }
+//    void init() {
+//        memoryFile = new MemoryFileRepositoryImpl();
+//        memoryVacancy = new MemoryVacancyRepositoryImpl();
+//        fileService = new SimpleFileService(memoryFile, );
+//        vacancyService = new SimpleVacancyService(memoryVacancy, fileService);
+//    }
 
     @Test
     void save() {

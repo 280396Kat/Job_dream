@@ -22,7 +22,7 @@ public class VacancyController {
     private final CityService cityService;
 
     public VacancyController(@Qualifier("vacancyServiceImpl") VacancyService vacancyService,
-                               @Qualifier("cityServiceImpl") CityService cityService) {
+                             @Qualifier("cityServiceImpl") CityService cityService) {
         this.vacancyService = vacancyService;
         this.cityService = cityService;
     }
@@ -49,6 +49,7 @@ public class VacancyController {
             return "errors/404";
         }
     }
+
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
